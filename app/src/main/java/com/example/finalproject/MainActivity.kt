@@ -1,4 +1,4 @@
-//Final Project by Aaron Sickafuse, 
+//Final Project by Aaron Sickafuse, Max Pargeon, 
 
 package com.example.finalproject
 
