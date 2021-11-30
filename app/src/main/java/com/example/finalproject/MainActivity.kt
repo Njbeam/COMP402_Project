@@ -1,3 +1,5 @@
+//Final Project by Aaron Sickafuse, Max Pargeon, 
+
 package com.example.finalproject
 
 import androidx.appcompat.app.AppCompatActivity
