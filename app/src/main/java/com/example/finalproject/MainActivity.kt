@@ -1,4 +1,4 @@
-//Final Project by Aaron Sickafuse, Max Pargeon, 
+//Final Project by Aaron Sickafuse, Max Pargeon, Nate Beam, Aaron Myers, Samuel DeSanto
 
 package com.example.finalproject
 
