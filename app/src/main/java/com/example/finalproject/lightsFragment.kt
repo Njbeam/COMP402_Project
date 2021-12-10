@@ -1,6 +1,7 @@
 package com.example.finalproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,54 +9,67 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.finalproject.placeholder.PlaceholderContent
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.finalproject.databinding.FragmentHomeBinding
+import com.example.finalproject.databinding.FragmentLightsBinding
+import com.example.finalproject.databinding.FragmentLightsListBinding
+import com.google.gson.Gson
 
 /**
  * A fragment representing a list of Items.
  */
 class lightsFragment : Fragment() {
-
     private var columnCount = 1
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    private lateinit var requestQueue: RequestQueue
+    private lateinit var binding: FragmentLightsListBinding
+    private lateinit var adapter: MylightsRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_lights_list, container, false)
+        binding = FragmentLightsListBinding.inflate(layoutInflater)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
+        requestQueue = Volley.newRequestQueue(this.context)
+
+        //set ip address for where the smart home is running
+        val url = "http://10.20.105.247/lights"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            url,
+            { name ->
+                val gson = Gson()
+                val lights = gson.fromJson<ArrayResult<lights>>(name).result
+
+                adapter = MylightsRecyclerViewAdapter()
+                binding.list.adapter = adapter
+                binding.list.layoutManager = LinearLayoutManager(context)
+
+                adapter.submitList(lights)
+
+                adapter.onClick = {
+                    it.isOn = !it.isOn
+
+                    val turnOnRequest = StringRequestWithBody(url + "?id=${it.id}", it, {}, {})
+                    turnOnRequest.tag = this
+                    requestQueue.add(turnOnRequest)
                 }
-                adapter = MylightsRecyclerViewAdapter(PlaceholderContent.ITEMS)
+
+                Log.i("VOLLEY", "lights are loaded.")
+            },
+            {
+                Log.e("VOLLEY", "Failed to load lights $it")
             }
-        }
-        return view
-    }
+        )
+        stringRequest.tag = this
+        requestQueue.add(stringRequest)
 
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            lightsFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
+        return binding.root
     }
 }
+
