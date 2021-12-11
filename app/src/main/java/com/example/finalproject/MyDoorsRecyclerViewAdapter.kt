@@ -1,5 +1,6 @@
 package com.example.finalproject
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,8 +26,10 @@ class MyDoorsRecyclerViewAdapter : ListAdapter<doors, MyDoorsRecyclerViewAdapter
     var onClick: ((doors) -> Unit)? = null
 
     inner class ViewHolder(private val binding: FragmentDoorsBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(doors: doors) {
             binding.doorsName.text = doors.name
+            binding.motorizedText.text = "Motorized: ${doors.motorized}"
             binding.doorsSwitch.isChecked = doors.isOpen
 
             binding.doorsSwitch.setOnClickListener {
