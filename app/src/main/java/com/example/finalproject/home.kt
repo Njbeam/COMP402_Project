@@ -31,6 +31,11 @@ class home : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.doorsButton.setOnClickListener {
+            val action = homeDirections.actionHome2ToDoorsFragment()
+            findNavController().navigate(action)
+        }
+
         return binding.root
 
     }

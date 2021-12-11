@@ -4,6 +4,6 @@ data class doors(
     val id: Int,
     val name: String,
     val type: String,
-    val isOpen: Boolean,
+    var isOpen: Boolean,
     val motorized: Boolean,
 )

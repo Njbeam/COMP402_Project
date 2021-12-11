@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_home2_to_lightsFragment3"
             app:destination="@id/lightsFragment3" />
+        <action
+            android:id="@+id/action_home2_to_doorsFragment"
+            app:destination="@id/doorsFragment" />
     </fragment>
     <fragment
         android:id="@+id/lightsFragment3"
         android:name="com.example.finalproject.lightsFragment"
         android:label="fragment_lights_list"
         tools:layout="@layout/fragment_lights_list" />
+    <fragment
+        android:id="@+id/doorsFragment"
+        android:name="com.example.finalproject.doorsFragment"
+        android:label="fragment_doors"
+        tools:layout="@layout/fragment_doors_list" />
 </navigation>

@@ -9,7 +9,7 @@ import com.example.finalproject.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.finalproject.databinding.FragmentLightsBinding
 
 
-class DiffCallback : DiffUtil.ItemCallback<lights>() {
+class DiffCallback1 : DiffUtil.ItemCallback<lights>() {
     override fun areItemsTheSame(oldItem: lights, newItem: lights): Boolean =
         oldItem.name == newItem.name
 
@@ -21,7 +21,7 @@ class DiffCallback : DiffUtil.ItemCallback<lights>() {
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MylightsRecyclerViewAdapter : ListAdapter<lights, MylightsRecyclerViewAdapter.ViewHolder>(DiffCallback()) {
+class MylightsRecyclerViewAdapter : ListAdapter<lights, MylightsRecyclerViewAdapter.ViewHolder>(DiffCallback1()) {
     var onClick: ((lights) -> Unit)? = null
 
     inner class ViewHolder(private val binding: FragmentLightsBinding) : RecyclerView.ViewHolder(binding.root) {
