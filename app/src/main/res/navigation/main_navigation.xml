@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_home2_to_doorsFragment"
             app:destination="@id/doorsFragment" />
+        <action
+            android:id="@+id/action_home2_to_mediaFragment"
+            app:destination="@id/mediaFragment" />
     </fragment>
     <fragment
         android:id="@+id/lightsFragment3"
@@ -27,4 +30,9 @@
         android:name="com.example.finalproject.doorsFragment"
         android:label="fragment_doors"
         tools:layout="@layout/fragment_doors_list" />
+    <fragment
+        android:id="@+id/mediaFragment"
+        android:name="com.example.finalproject.mediaFragment"
+        android:label="fragment_media_list"
+        tools:layout="@layout/fragment_media_list" />
 </navigation>

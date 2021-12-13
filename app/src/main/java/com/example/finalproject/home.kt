@@ -36,6 +36,11 @@ class home : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.musicButton.setOnClickListener {
+            val action = homeDirections.actionHome2ToMediaFragment()
+            findNavController().navigate(action)
+        }
+
         return binding.root
 
     }
