@@ -8,7 +8,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.finalproject.databinding.ActivityMainBinding
+
 import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
