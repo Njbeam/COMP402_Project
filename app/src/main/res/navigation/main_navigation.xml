@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_home2_to_mediaFragment"
             app:destination="@id/mediaFragment" />
+        <action
+            android:id="@+id/action_home2_to_preferences"
+            app:destination="@id/preferences" />
     </fragment>
     <fragment
         android:id="@+id/lightsFragment3"
@@ -35,4 +38,9 @@
         android:name="com.example.finalproject.mediaFragment"
         android:label="fragment_media_list"
         tools:layout="@layout/fragment_media_list" />
+    <fragment
+        android:id="@+id/preferences"
+        android:name="com.example.finalproject.Preferences"
+        android:label="fragment_preferences"
+        tools:layout="@layout/fragment_preferences" />
 </navigation>

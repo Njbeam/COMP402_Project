@@ -41,6 +41,11 @@ class home : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.preferencesButton.setOnClickListener {
+            val action = homeDirections.actionHome2ToPreferences()
+            findNavController().navigate(action)
+        }
+
         return binding.root
 
     }
