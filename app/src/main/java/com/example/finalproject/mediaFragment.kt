@@ -36,7 +36,7 @@ class mediaFragment : Fragment() {
         requestQueue = Volley.newRequestQueue(this.context)
 
         //set ip address for where the smart home is running
-        val url = "http://10.37.112.87/media-players"
+        var url = "http://10.35.107.55/media-players"
 
         val stringRequest = StringRequest(
             Request.Method.GET,
@@ -51,19 +51,79 @@ class mediaFragment : Fragment() {
 
                 adapter.submitList(media)
 
+
+
                 adapter.onClick = {
                     it.isPlaying = !it.isPlaying
 
-                    Log.i("ID: ", it.id.toString())
-                    Log.i("NAME: ", it.name)
-                    Log.i("TYPE: ", it.type)
-                    Log.i("iSPLAYING: ", it.isPlaying.toString())
-                    Log.i("NOWPLAYINGSONGID: ", it.nowPlayingSongId.toString())
-                    Log.i("CURRENTTIMESECONDS: ", it.currentTimeSeconds.toString())
+                    if(it.isPlaying) {
+                        val turnOnRequest = StringRequestWithBody(
+                            url + "/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            it,
+                            {},
+                            {})
+                        Log.i("url: ", turnOnRequest.toString())
+                        turnOnRequest.tag = this
+                        requestQueue.add(turnOnRequest)
+                    }
+                    if(!it.isPlaying){
+                        val turnOffRequest = StringRequestWithBody(
+                            url + "/pause?id=${it.id}",
+                            it,
+                            {},
+                            {})
+                        Log.i("url: ", turnOffRequest.toString())
+                        turnOffRequest.tag = this
+                        requestQueue.add(turnOffRequest)
+                    }
 
-                    val turnOnRequest = StringRequestWithBody(url + "?id=${it.id}", it, {}, {})
-                    turnOnRequest.tag = this
-                    requestQueue.add(turnOnRequest)
+                }
+
+                adapter.prevPress = {
+                    if(it.nowPlayingSongId == 0){
+                        it.nowPlayingSongId = 6
+                        val songPrevRequest = StringRequestWithBody(
+                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            it,
+                            {},
+                            {}
+                        )
+                        songPrevRequest.tag = this
+                        requestQueue.add(songPrevRequest)
+                    }else{
+                        it.nowPlayingSongId -= 1
+                        val songPrevRequest = StringRequestWithBody(
+                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            it,
+                            {},
+                            {}
+                        )
+                        songPrevRequest.tag = this
+                        requestQueue.add(songPrevRequest)
+                    }
+                }
+                adapter.skipPress = {
+                    if(it.nowPlayingSongId == 6){
+                        it.nowPlayingSongId = 0
+                        val songPrevRequest = StringRequestWithBody(
+                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            it,
+                            {},
+                            {}
+                        )
+                        songPrevRequest.tag = this
+                        requestQueue.add(songPrevRequest)
+                    }else{
+                        it.nowPlayingSongId += 1
+                        val songPrevRequest = StringRequestWithBody(
+                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            it,
+                            {},
+                            {}
+                        )
+                        songPrevRequest.tag = this
+                        requestQueue.add(songPrevRequest)
+                    }
                 }
 
                 Log.i("VOLLEY", "media players are loaded.")
@@ -74,6 +134,7 @@ class mediaFragment : Fragment() {
         )
         stringRequest.tag = this
         requestQueue.add(stringRequest)
+
 
         return binding.root
     }
