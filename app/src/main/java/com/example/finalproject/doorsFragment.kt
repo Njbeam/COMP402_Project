@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -24,6 +26,7 @@ class doorsFragment : Fragment() {
     private lateinit var requestQueue: RequestQueue
     private lateinit var binding: FragmentDoorsListBinding
     private lateinit var adapter: MyDoorsRecyclerViewAdapter
+    private val args: doorsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class doorsFragment : Fragment() {
         binding = FragmentDoorsListBinding.inflate(layoutInflater)
 
         requestQueue = Volley.newRequestQueue(this.context)
-
+        val ip = args.ip
         //set ip address for where the smart home is running
         val url = "$ip/doors"
 

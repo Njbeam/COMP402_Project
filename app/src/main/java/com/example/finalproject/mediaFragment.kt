@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -19,7 +20,7 @@ import com.example.finalproject.databinding.FragmentLightsListBinding
 import com.example.finalproject.databinding.FragmentMediaListBinding
 import com.google.gson.Gson
 
-const val ip = "http://10.22.101.248"
+//const val ip = "http://10.22.105.162"
 
 
 /**
@@ -29,7 +30,7 @@ class mediaFragment : Fragment() {
     private lateinit var requestQueue: RequestQueue
     private lateinit var binding: FragmentMediaListBinding
     private lateinit var adapter: MyMediaRecyclerViewAdapter
-
+    private val args: mediaFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,7 @@ class mediaFragment : Fragment() {
         binding = FragmentMediaListBinding.inflate(layoutInflater)
 
         requestQueue = Volley.newRequestQueue(this.context)
+        val ip = args.ip
 
         //set ip address for where the smart home is running
         var url = "$ip/media-players"

@@ -28,8 +28,7 @@ import android.view.View.OnTouchListener
 import androidx.core.content.ContextCompat.getSystemService
 
 import androidx.appcompat.app.AppCompatActivity
-
-
+import androidx.fragment.app.viewModels
 
 
 /**
@@ -40,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity
 class home : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
+    private val viewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,19 +48,21 @@ class home : Fragment() {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        val ip = viewModel.getIP().toString()
+
         //on click listeners to go to other recycler views
         binding.lightsButton.setOnClickListener {
-            val action = homeDirections.actionHome2ToLightsFragment3()
+            val action = homeDirections.actionHome2ToLightsFragment3(ip)
             findNavController().navigate(action)
         }
 
         binding.doorsButton.setOnClickListener {
-            val action = homeDirections.actionHome2ToDoorsFragment()
+            val action = homeDirections.actionHome2ToDoorsFragment(ip)
             findNavController().navigate(action)
         }
 
         binding.musicButton.setOnClickListener {
-            val action = homeDirections.actionHome2ToMediaFragment()
+            val action = homeDirections.actionHome2ToMediaFragment(ip)
             findNavController().navigate(action)
         }
 //        binding.settingsButton.setOnClickListener {
@@ -67,10 +70,13 @@ class home : Fragment() {
 //            findNavController().navigate(action)
 //        }
 
-        binding.settingsButton.setOnClickListener {
+        binding.preferencesButton.setOnClickListener {
             val action = homeDirections.actionHome2ToPreferences()
             findNavController().navigate(action)
         }
+
+        //binding.doorsButton.text = viewModel.getIP()
+
         return binding.root
 
     }
