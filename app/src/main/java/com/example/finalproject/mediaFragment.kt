@@ -86,7 +86,7 @@ class mediaFragment : Fragment() {
                 }
 
                 adapter.prevPress = {
-                    if(it.nowPlayingSongId == 0){
+                    if(it.nowPlayingSongId == 0 && it.isPlaying){
                         it.nowPlayingSongId = 6
                         val songPrevRequest = StringRequestWithBody(
                             "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
@@ -96,20 +96,22 @@ class mediaFragment : Fragment() {
                         )
                         songPrevRequest.tag = this
                         requestQueue.add(songPrevRequest)
-                    }else{
-                        it.nowPlayingSongId -= 1
-                        val songPrevRequest = StringRequestWithBody(
-                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
-                            it,
-                            {},
-                            {}
-                        )
-                        songPrevRequest.tag = this
-                        requestQueue.add(songPrevRequest)
+                    }else {
+                        if (it.isPlaying) {
+                            it.nowPlayingSongId -= 1
+                            val songPrevRequest = StringRequestWithBody(
+                                "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                                it,
+                                {},
+                                {}
+                            )
+                            songPrevRequest.tag = this
+                            requestQueue.add(songPrevRequest)
+                        }
                     }
                 }
                 adapter.skipPress = {
-                    if(it.nowPlayingSongId == 6){
+                    if(it.nowPlayingSongId == 6 && it.isPlaying){
                         it.nowPlayingSongId = 0
                         val songPrevRequest = StringRequestWithBody(
                             "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
@@ -119,16 +121,18 @@ class mediaFragment : Fragment() {
                         )
                         songPrevRequest.tag = this
                         requestQueue.add(songPrevRequest)
-                    }else{
-                        it.nowPlayingSongId += 1
-                        val songPrevRequest = StringRequestWithBody(
-                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
-                            it,
-                            {},
-                            {}
-                        )
-                        songPrevRequest.tag = this
-                        requestQueue.add(songPrevRequest)
+                    }else {
+                        if (it.isPlaying) {
+                            it.nowPlayingSongId += 1
+                            val songPrevRequest = StringRequestWithBody(
+                                "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                                it,
+                                {},
+                                {}
+                            )
+                            songPrevRequest.tag = this
+                            requestQueue.add(songPrevRequest)
+                        }
                     }
                 }
 
