@@ -1,22 +1,13 @@
 package com.example.finalproject
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.os.SharedMemory
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.finalproject.databinding.FragmentPopupWindowBinding
 import com.example.finalproject.databinding.FragmentPreferencesBinding
@@ -33,12 +24,9 @@ class Preferences: Fragment() {
     ): View? {
         binding = FragmentPreferencesBinding.inflate(layoutInflater)
 
-        //
         loadData()
 
         binding.saveButton.setOnClickListener {
-            // inflate the layout of the popup window
-            //v/al inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val popupView: View = inflater.inflate(R.layout.fragment_popup_window, null)
 
             // create the popup window
@@ -54,19 +42,6 @@ class Preferences: Fragment() {
             // Update popup with latest text
             popupBinding.editLabelTextView.text = "test"
 
-            // When save is pressed, keep the text
-//            popupBinding.saveButton.setOnClickListener {
-//                Toast.makeText(this.context, "IP saved", Toast.LENGTH_SHORT).show()
-////                val text = popupBinding.ipAddressEditText.text.toString()
-////                viewModel.updateIP(text)
-////                binding.addressTextView.text = viewModel.getIP()
-//                popupWindow.dismiss()
-//            }
-            // dismiss the popup window when touched
-//            popupView.setOnTouchListener { v, event ->
-//                popupWindow.dismiss()
-//                true
-//            }
             val updatedIP = binding.addressEditText.text.toString()
             viewModel.updateIP(updatedIP)
         }
