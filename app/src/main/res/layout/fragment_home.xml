@@ -19,40 +19,67 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/lightsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lights"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/lightsphoto"
+        android:fontFamily="@font/allan"
+        android:text="Lights  "
+        android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/musicButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="144dp" />
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/musicButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Music"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/musicphoto"
+        android:fontFamily="@font/allan"
+        android:text="Music  "
+        android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/doorsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lightsButton"
-        tools:layout_editor_absoluteX="143dp" />
+        app:layout_constraintTop_toBottomOf="@+id/lightsButton" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/doorsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Doors"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/doorphoto"
+        android:fontFamily="@font/allan"
+        android:text="Doors  "
+        android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicButton"
-        tools:layout_editor_absoluteX="144dp" />
+        app:layout_constraintTop_toBottomOf="@+id/musicButton" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/homephoto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/homephoto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
