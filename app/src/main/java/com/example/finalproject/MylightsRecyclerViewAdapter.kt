@@ -17,10 +17,6 @@ class DiffCallback1 : DiffUtil.ItemCallback<lights>() {
         oldItem == newItem
 }
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MylightsRecyclerViewAdapter : ListAdapter<lights, MylightsRecyclerViewAdapter.ViewHolder>(DiffCallback1()) {
     var onClick: ((lights) -> Unit)? = null
 

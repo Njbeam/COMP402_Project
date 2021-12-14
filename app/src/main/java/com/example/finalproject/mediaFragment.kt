@@ -20,7 +20,7 @@ import com.example.finalproject.databinding.FragmentLightsListBinding
 import com.example.finalproject.databinding.FragmentMediaListBinding
 import com.google.gson.Gson
 
-//const val ip = "http://10.22.105.162"
+// IP to use for desktop: http://10.22.105.162
 
 
 /**

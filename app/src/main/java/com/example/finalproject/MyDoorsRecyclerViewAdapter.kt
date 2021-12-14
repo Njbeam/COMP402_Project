@@ -18,10 +18,6 @@ class DiffCallback : DiffUtil.ItemCallback<doors>() {
         oldItem == newItem
 }
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyDoorsRecyclerViewAdapter : ListAdapter<doors, MyDoorsRecyclerViewAdapter.ViewHolder>(DiffCallback()) {
     var onClick: ((doors) -> Unit)? = null
 
