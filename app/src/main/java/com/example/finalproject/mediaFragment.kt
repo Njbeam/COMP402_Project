@@ -21,6 +21,7 @@ import com.google.gson.Gson
 
 const val ip = "http://10.22.101.248"
 
+
 /**
  * A fragment representing a list of Items.
  */
@@ -28,6 +29,7 @@ class mediaFragment : Fragment() {
     private lateinit var requestQueue: RequestQueue
     private lateinit var binding: FragmentMediaListBinding
     private lateinit var adapter: MyMediaRecyclerViewAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
