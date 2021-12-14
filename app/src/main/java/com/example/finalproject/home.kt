@@ -66,31 +66,8 @@ class home : Fragment() {
 //            val action = homeDirections.actionHome2ToPreferencesFragment()
 //            findNavController().navigate(action)
 //        }
+
         binding.settingsButton.setOnClickListener {
-
-
-            // inflate the layout of the popup window
-            //v/al inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val popupView: View = inflater.inflate(R.layout.fragment_popup_window, null)
-
-            // create the popup window
-            val width = LinearLayout.LayoutParams.WRAP_CONTENT
-            val height = LinearLayout.LayoutParams.WRAP_CONTENT
-            val focusable = true // lets taps outside the popup also dismiss it
-            val popupWindow = PopupWindow(popupView, width, height, focusable)
-
-            // show the popup window
-            // which view you pass in doesn't matter, it is only used for the window tolken
-            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-
-
-            // dismiss the popup window when touched
-            popupView.setOnTouchListener { v, event ->
-                popupWindow.dismiss()
-                true
-            }
-        }
-        binding.preferencesButton.setOnClickListener {
             val action = homeDirections.actionHome2ToPreferences()
             findNavController().navigate(action)
         }
