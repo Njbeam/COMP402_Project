@@ -83,11 +83,16 @@ class home : Fragment() {
             // which view you pass in doesn't matter, it is only used for the window tolken
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 
+
             // dismiss the popup window when touched
             popupView.setOnTouchListener { v, event ->
                 popupWindow.dismiss()
                 true
             }
+        }
+        binding.preferencesButton.setOnClickListener {
+            val action = homeDirections.actionHome2ToPreferences()
+            findNavController().navigate(action)
         }
         return binding.root
 
