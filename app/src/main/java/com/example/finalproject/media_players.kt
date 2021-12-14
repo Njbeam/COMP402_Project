@@ -5,6 +5,6 @@ data class media_players(
     val name: String,
     val type: String,
     var isPlaying: Boolean,
-    val nowPlayingSongId: Int,
+    var nowPlayingSongId: Int,
     var currentTimeSeconds: Double
 )
