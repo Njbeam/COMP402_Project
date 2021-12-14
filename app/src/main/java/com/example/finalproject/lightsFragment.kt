@@ -35,7 +35,7 @@ class lightsFragment : Fragment() {
         requestQueue = Volley.newRequestQueue(this.context)
 
         //set ip address for where the smart home is running
-        val url = "http://10.35.107.55/lights"
+        val url = "$ip/lights"
 
         val stringRequest = StringRequest(
             Request.Method.GET,

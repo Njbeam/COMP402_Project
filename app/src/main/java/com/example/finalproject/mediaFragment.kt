@@ -19,6 +19,8 @@ import com.example.finalproject.databinding.FragmentLightsListBinding
 import com.example.finalproject.databinding.FragmentMediaListBinding
 import com.google.gson.Gson
 
+const val ip = "http://10.22.101.248"
+
 /**
  * A fragment representing a list of Items.
  */
@@ -36,7 +38,7 @@ class mediaFragment : Fragment() {
         requestQueue = Volley.newRequestQueue(this.context)
 
         //set ip address for where the smart home is running
-        var url = "http://10.35.107.55/media-players"
+        var url = "$ip/media-players"
 
         val stringRequest = StringRequest(
             Request.Method.GET,
@@ -83,7 +85,7 @@ class mediaFragment : Fragment() {
                     if(it.nowPlayingSongId == 0){
                         it.nowPlayingSongId = 6
                         val songPrevRequest = StringRequestWithBody(
-                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
                             it,
                             {},
                             {}
@@ -93,7 +95,7 @@ class mediaFragment : Fragment() {
                     }else{
                         it.nowPlayingSongId -= 1
                         val songPrevRequest = StringRequestWithBody(
-                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
                             it,
                             {},
                             {}
@@ -106,7 +108,7 @@ class mediaFragment : Fragment() {
                     if(it.nowPlayingSongId == 6){
                         it.nowPlayingSongId = 0
                         val songPrevRequest = StringRequestWithBody(
-                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
                             it,
                             {},
                             {}
@@ -116,7 +118,7 @@ class mediaFragment : Fragment() {
                     }else{
                         it.nowPlayingSongId += 1
                         val songPrevRequest = StringRequestWithBody(
-                            "http://10.35.107.55/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
+                            "$ip/media-players/play?id=${it.id}&songId=${it.nowPlayingSongId}",
                             it,
                             {},
                             {}
