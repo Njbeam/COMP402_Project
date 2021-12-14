@@ -18,6 +18,8 @@
         android:inputType="textWebEditText"
         android:minHeight="56dp"
         android:text="@string/address_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressLabelTextView" />

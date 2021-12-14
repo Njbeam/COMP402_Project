@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -25,6 +26,7 @@ class lightsFragment : Fragment() {
     private lateinit var requestQueue: RequestQueue
     private lateinit var binding: FragmentLightsListBinding
     private lateinit var adapter: MylightsRecyclerViewAdapter
+    private val args: lightsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +35,7 @@ class lightsFragment : Fragment() {
         binding = FragmentLightsListBinding.inflate(layoutInflater)
 
         requestQueue = Volley.newRequestQueue(this.context)
+        val ip = args.ip
 
         //set ip address for where the smart home is running
         val url = "$ip/lights"

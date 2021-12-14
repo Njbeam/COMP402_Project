@@ -18,6 +18,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.example.finalproject.databinding.FragmentPopupWindowBinding
 import com.example.finalproject.databinding.FragmentPreferencesBinding
 
 class Preferences: Fragment() {
@@ -45,52 +46,36 @@ class Preferences: Fragment() {
             val height = LinearLayout.LayoutParams.WRAP_CONTENT
             val focusable = true // lets taps outside the popup also dismiss it
             val popupWindow = PopupWindow(popupView, width, height, focusable)
-
             // show the popup window
-            // which view you pass in doesn't matter, it is only used for the window tolken
+            // which view you pass in doesn't matter, it is only used for the window token
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+            var popupBinding: FragmentPopupWindowBinding = FragmentPopupWindowBinding.inflate(layoutInflater)
 
+            // Update popup with latest text
+            popupBinding.editLabelTextView.text = "test"
 
+            // When save is pressed, keep the text
+//            popupBinding.saveButton.setOnClickListener {
+//                Toast.makeText(this.context, "IP saved", Toast.LENGTH_SHORT).show()
+////                val text = popupBinding.ipAddressEditText.text.toString()
+////                viewModel.updateIP(text)
+////                binding.addressTextView.text = viewModel.getIP()
+//                popupWindow.dismiss()
+//            }
             // dismiss the popup window when touched
-            popupView.setOnTouchListener { v, event ->
-                popupWindow.dismiss()
-                true
-            }
-            val updatedIP = binding.addressEditText.text.toString()
-            viewModel.saveData(updatedIP)
-            Toast.makeText(this.context, "IP saved: $updatedIP", Toast.LENGTH_SHORT).show()
-        }
-
-//        binding.settingsButton.setOnClickListener {
-//
-//
-//            // inflate the layout of the popup window
-//            //v/al inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//            val popupView: View = inflater.inflate(R.layout.fragment_popup_window, null)
-//
-//            // create the popup window
-//            val width = LinearLayout.LayoutParams.WRAP_CONTENT
-//            val height = LinearLayout.LayoutParams.WRAP_CONTENT
-//            val focusable = true // lets taps outside the popup also dismiss it
-//            val popupWindow = PopupWindow(popupView, width, height, focusable)
-//
-//            // show the popup window
-//            // which view you pass in doesn't matter, it is only used for the window tolken
-//            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-//
-//
-//            // dismiss the popup window when touched
 //            popupView.setOnTouchListener { v, event ->
 //                popupWindow.dismiss()
 //                true
 //            }
-//        }
+            val updatedIP = binding.addressEditText.text.toString()
+            viewModel.updateIP(updatedIP)
+        }
 
         return binding.root
     }
 
     private fun loadData() {
-        binding.addressEditText.setText(viewModel.getData())
+        binding.addressEditText.setText(viewModel.getIP())
     }
 
 }
