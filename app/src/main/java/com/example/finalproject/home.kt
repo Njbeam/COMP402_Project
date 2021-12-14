@@ -1,14 +1,36 @@
 package com.example.finalproject
 
+import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import android.widget.PopupWindow
+import androidx.core.content.ContextCompat.getSystemService
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.ImageRequest
 import com.example.finalproject.databinding.FragmentHomeBinding
+import android.view.MotionEvent
+
+import android.view.Gravity
+
+import android.widget.LinearLayout
+
+
+import com.example.finalproject.R
+
+import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.view.View.OnTouchListener
+
+import androidx.core.content.ContextCompat.getSystemService
+
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 /**
  * A simple [Fragment] subclass.
@@ -40,8 +62,20 @@ class home : Fragment() {
             val action = homeDirections.actionHome2ToMediaFragment()
             findNavController().navigate(action)
         }
+//        binding.settingsButton.setOnClickListener {
+//            val action = homeDirections.actionHome2ToPreferencesFragment()
+//            findNavController().navigate(action)
+//        }
 
+        binding.settingsButton.setOnClickListener {
+            val action = homeDirections.actionHome2ToPreferences()
+            findNavController().navigate(action)
+        }
         return binding.root
 
     }
+
 }
+
+
+
